@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: api-meli-challenge
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: api-meli-challenge
+  template:
+    metadata:
+      labels:
+        app: api-meli-challenge
+    spec:
+      containers:
+        - name: api-meli-challenge
+          image: 528757786741.dkr.ecr.sa-east-1.amazonaws.com/api-meli-challenge:v4
+          ports:
+            - containerPort: 5000
