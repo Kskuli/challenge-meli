@@ -1,8 +1,7 @@
 import { Request, Response } from "express";
 import { calculateCouponItems } from "../services/coupon.service";
-import { CustomError } from "../errorHandler";
+import { CustomError } from "../ErrorHandler";
 import { CouponRequestBody } from "../types/coupon";
-
 
 export const getCoupons = async (
   req: Request<{}, {}, CouponRequestBody>,
@@ -27,6 +26,7 @@ export const getCoupons = async (
     if (error instanceof CustomError) {
       return res.status(error.statusCode).json({ message: error.message });
     }
+    console.error("error", error);
     return res.status(500).json({ message: "Internal server error" });
   }
 };

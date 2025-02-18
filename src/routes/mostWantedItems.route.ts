@@ -3,7 +3,6 @@ import { getTopMostWantedItemsController } from "../controllers/mostWantedItems.
 
 const router = Router();
 
-// Ruta para obtener los 5 ítems más canjeados
 router.get("/top-five", getTopMostWantedItemsController);
 
 export default router;

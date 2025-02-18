@@ -1,4 +1,4 @@
-import { CustomError } from "../errorHandler";
+import { CustomError } from "../ErrorHandler";
 import { MercadoLibreAuthResponse } from "../types/mercadoLibreAuthResponse";
 import * as dotenv from 'dotenv';
 dotenv.config();

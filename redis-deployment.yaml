@@ -1,20 +1,22 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: api-meli-challenge
+  name: redis
 spec:
-  replicas: 3
+  replicas: 1
   selector:
     matchLabels:
-      app: api-meli-challenge
+      app: redis
   template:
     metadata:
       labels:
-        app: api-meli-challenge
+        app: redis
     spec:
       containers:
-        - name: api-meli-challenge
-          image: gcr.io/main-theorem-451212-q1/api-meli-challenge:v37
+        - name: redis
+          image: redis:6.0
+          ports:
+            - containerPort: 6379
           resources:
             requests:
               cpu: "100m" 

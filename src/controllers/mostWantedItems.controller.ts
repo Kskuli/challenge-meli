@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
 import { getTopFiveMostWantedItems }  from "../services/mostWantedItems.service";
-import { CustomError } from "../errorHandler";
+import { CustomError } from "../ErrorHandler";
 
 export const getTopMostWantedItemsController = async (req: Request, res: Response): Promise<any> => {
   try {
