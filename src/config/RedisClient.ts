@@ -9,7 +9,7 @@ class RedisClient {
 
   public static getClient() {
     if (!RedisClient.client) {
-      const redisHost = process.env.NODE_ENV === 'development' ? 'localhost' : 'redis';
+      const redisHost = 'redis';
       console.log(`Connecting to Redis at: redis://${redisHost}:6379`);
       RedisClient.client = createClient({ url: `redis://${redisHost}:6379` });
       RedisClient.client.connect().catch((err: Error) => {

@@ -4,7 +4,6 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "NODE_ENV=development npx nodemon src/server.ts",
     "build": "npx tsc",
     "start": "NODE_ENV=production node dist/server.js"
   },
