@@ -6,6 +6,7 @@ import dotenv from "dotenv";
 import couponsRoutes from "./routes/coupons.route";
 import mostWantedItemsRoutes from "./routes/mostWantedItems.route";
 import "reflect-metadata";
+import basicAuthMiddleware from "./middleware/basicAuth";
 
 dotenv.config();
 
@@ -20,6 +21,9 @@ AppDataSource.initialize()
     console.log("Database connected successfully!");
   })
   .catch((error) => console.log("Error connecting to the database: ", error));
+
+// Basic Auth Middleware
+app.use(basicAuthMiddleware);
 
 // Routes
 app.use("/api/v1/coupon", couponsRoutes);

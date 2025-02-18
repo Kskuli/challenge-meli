@@ -1,22 +1,12 @@
 import { MostWantedItems } from "../entities/MostWantedItems";
 import { AppDataSource } from "../dataSource";
-import { Item } from "../types/item";
-import { CustomError } from "../errorHandler";
+import { Item, ItemPriceResponse } from "../types/item";
+import { CustomError } from "../ErrorHandler";
 
 import * as dotenv from 'dotenv';
 import { refreshToken } from "../utils/refreshToken";
+import { CouponResult } from "../types/coupon";
 dotenv.config();
-interface CouponResult {
-  item_ids: string[];
-  total: number;
-}
-interface ItemPriceResponse {
-  code: number
-  body: {
-    id: string;
-    price: number;
-  };
-}
 
 export const getItemPrices = async (itemIds: string[]): Promise<Item[]> => {
   const attributes = "id,price";
@@ -44,20 +34,18 @@ export const getItemPrices = async (itemIds: string[]): Promise<Item[]> => {
     }
 
     const data = (await response.json()) as ItemPriceResponse[];
-    const validItems = data.filter((item) => item.code !== 404 && item.body?.price !== undefined);
-
-    if (!validItems.length) {
-      throw new CustomError("No valid items found", 404);
+    const [{ code }] = data;
+    if (code === 404) {
+      throw new CustomError("Item not found", code);
     }
+    const validItems = data.filter((item) => item.code !== 404 && item.body?.price !== undefined);
 
     return validItems.map(({ body: { id, price } }) => ({ id, price }));
   } catch (error) {
     console.error("Error fetching item prices:", error);
-
     if (error instanceof CustomError) {
       throw error;
     }
-
     throw new CustomError("Error fetching item prices", 500);
   }
 };
@@ -87,7 +75,6 @@ export const calculateCouponItems = async (amount: string, itemIds: string[]): P
     }
   }
 
-  // Hacer un upsert para cada ítem seleccionado
   for (const selectedItem of selectedItems) {
     const existingItem = await mostWantedItemsRepository.findOne({ where: { itemId: selectedItem.id } });
 

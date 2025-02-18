@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
 import { calculateCouponItems } from "../services/coupon.service";
-import { CustomError } from "../errorHandler";
+import { CustomError } from "../ErrorHandler";
 import { CouponRequestBody } from "../types/coupon";
 
 
