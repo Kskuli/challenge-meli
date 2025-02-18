@@ -1,1 +1,0 @@
-{"version":3,"file":"dataSource.js","sourceRoot":"","sources":["../src/dataSource.ts"],"names":[],"mappings":";;;AAAA,4BAA0B;AAC1B,qCAAqC;AACrC,gEAA6D;AAEhD,QAAA,aAAa,GAAG,IAAI,oBAAU,CAAC;IAC1C,IAAI,EAAE,QAAQ;IACd,QAAQ,EAAE,aAAa;IACvB,WAAW,EAAE,IAAI;IACjB,OAAO,EAAE,IAAI;IACb,QAAQ,EAAE,CAAC,iCAAe,CAAC;CAC5B,CAAC,CAAC"}
